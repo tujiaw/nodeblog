@@ -1,0 +1,5 @@
+<%- include('header') %>
+<% posts.forEach(function(post) { %>
+  <%- include('post-content', { post: post }) %>
+<% }) %>
+<%- include('footer') %>

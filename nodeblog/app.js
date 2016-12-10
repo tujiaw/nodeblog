@@ -8,6 +8,10 @@ var bodyParser = require('body-parser');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var config = require('config-lite');
+var routes = require('./routes');
+var pkg = require('./package');
+var winston = require('winston');
+var expressWinston = require('express-winston');
 
 var app = express();
 
@@ -25,29 +29,63 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   name: config.session.key,
   secret: config.session.secret,
+  resave: true,
+  saveUninitialized: true,
   cookie: {
     maxAge: config.session.maxAge
   },
   store: new MongoStore({
-    url: config.mogodb
+    url: config.mongodb
   })
 }));
-app.use(flash());
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use('/signup', require('./routes/signup'));
-app.use('/signin', require('./routes/signin'));
-app.use('/signout', require('./routes/signout'));
-app.use('/posts', require('./routes/posts'));
 
-// catch 404 and forward to error handler
+app.use(flash());
+app.use(require('express-formidable')({
+  uploadDir: path.join(__dirname, 'public/images'),
+  keepExtensions: true
+}));
+
+app.locals.blog = {
+  title: pkg.name,
+  description: pkg.description,
+};
+
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.locals.user = req.session.user;
+  res.locals.success = req.flash('success').toString();
+  res.locals.error = req.flash('error').toString();
+  next();
 });
 
+// // 正常请求的日志
+// app.use(expressWinston.logger({
+//   transports: [
+//     new (winston.transports.Console)({
+//       json: true,
+//       colorize: true
+//     }),
+//     new winston.transports.File({
+//       filename: 'logs/success.log'
+//     })
+//   ]
+// }));
+routes(app);
+console.log('11111111111111111111111111111111111111');
+
+
 // error handlers
+// 错误请求的日志
+// app.use(expressWinston.errorLogger({
+//   transports: [
+//     new winston.transports.Console({
+//       json: true,
+//       colorize: true
+//     }),
+//     new winston.transports.File({
+//       filename: 'logs/error.log'
+//     })
+//   ]
+// }));
 
 // development error handler
 // will print stacktrace
