@@ -37,3 +37,11 @@ exports.Post = mongolass.model('Post', {
   pv: { type: 'number' }
 });
 exports.Post.index({ author: 1, _id: -1 }).exec();
+
+exports.Comment = mongolass.model('Comment', {
+  author: { type: Mongolass.Types.ObjectId },
+  content: { type: 'string' },
+  postId: { type: Mongolass.Types.ObjectId }
+});
+exports.Comment.index({ postId: 1, _id: 1 }).exec();
+exports.Comment.index({ author: 1, _id: 1 }).exec();

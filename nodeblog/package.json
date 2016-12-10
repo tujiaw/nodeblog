@@ -1,7 +1,7 @@
 {
-  "name": "nodeblog",
+  "name": "博客小站",
   "version": "0.0.0",
-  "description": "tujiaw blog",
+  "description": "Keep It Simple, Stupid",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
