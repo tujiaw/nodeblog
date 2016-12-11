@@ -1,7 +1,7 @@
 <%- include('header') %>
 
 <div class="ui grid">
-  <div class="four wide column">
+  <div class="three wide column">
     <a class="avatar"
        href="/posts?author=<%= user._id %>"
        data-title="<%= user.name %> | <%= ({m: '男', f: '女', x: '保密'})[user.gender] %>"
@@ -10,19 +10,49 @@
     </a>
   </div>
 
-  <div class="eight wide column">
+  <div class="ten wide column">
     <form class="ui form segment" method="post" action="/posts">
       <div class="field required">
         <label>标题</label>
         <input type="text" name="title">
       </div>
       <div class="field required">
-        <label>内容</label>
-        <textarea name="content" rows="15"></textarea>
+        <label class="required">内容</label>
+        <div id="previewText" style="background-color:#dededf; overflow:auto; word-break:break-all; height:300px; border-radius:5px;  margin-bottom:10px; padding:10px; display:none;"></div>
+        <textarea id="srcText" name="content" rows="15"></textarea>
       </div>
-      <input type="submit" class="ui button" value="发布">
+      <div>
+        <input type="submit" class="ui button" value="发布">
+        <a id="previewBtn" href="">预览</a>
+      </div>
     </div>
   </form>
 </div>
+<script src="/javascripts/marked.min.js"></script>
+<script type="text/javascript">
+  var oldContent = "";
+  var currentContent = "";
+  var updateContent = debounce(function() {
+    $("#previewText").html(marked(currentContent));
+  }, 1000);
 
+  function isPreviewVisible() {
+    return $("#previewText").css("display") !== "none";
+  }
+
+  $("#srcText").on("change keyup paste", function() {
+    currentContent = $(this).val();
+    if (currentContent == oldContent || !isPreviewVisible()) {
+      return;
+    }
+    oldContent = currentContent;
+    updateContent();
+  });
+
+  $("#previewBtn").on("click", function() {
+    $("#previewText").css("display", isPreviewVisible() ? "none" : "");
+    updateContent();
+    return false;
+  });
+</script>
 <%- include('footer') %>

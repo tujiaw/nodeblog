@@ -1,8 +1,8 @@
 <%- include('header') %>
 
 <div class="ui grid">
-  <div class="four wide column"></div>
-  <div class="eight wide column">
+  <div class="five wide column"></div>
+  <div class="six wide column">
     <form class="ui form segment" method="post" enctype="multipart/form-data">
       <div class="field required">
         <label>用户名</label>
@@ -28,7 +28,7 @@
         <label>头像</label>
         <input type="file" name="avatar">
       </div>
-      <div class="field required">
+      <div class="field">
         <label>个人简介</label>
         <textarea name="bio" rows="5" v-model="user.bio"></textarea>
       </div>

@@ -121,13 +121,11 @@ router.get('/:postId/remove', checkLogin, function(req, res, next) {
 
 // POST /posts/:postId/comment 创建一条留言
 router.post('/:postId/comment', checkLogin, function(req, res, next) {
-  console.log('111');
   res.send(req.flash());
 });
 
 // GET /posts/:postId/comment/:commentId/remove 删除一条留言
 router.get('/:postId/comment/:commentId/remove', checkLogin, function(req, res, next) {
-  console.log('111');
   res.send(req.flash());
 });
 
