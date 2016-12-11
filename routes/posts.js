@@ -8,7 +8,7 @@ var checkLogin = require('../middle/check').checkLogin;
 router.get('/', function(req, res, next) {
   console.log('render posts');
   var author = req.query.author;
-  PostModel.getPosts(author)
+  PostModel.getPostsProfile(author)
     .then(function(posts) {
       res.render('posts', {
         posts: posts

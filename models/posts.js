@@ -1,6 +1,7 @@
 var Post = require('../lib/mongo').Post;
 var marked = require('marked');
 
+const PROFILE_COUNT = 150;
 Post.plugin('contentToHtml', {
   afterFind: function(posts) {
     return posts.map(function(post) {
@@ -11,6 +12,21 @@ Post.plugin('contentToHtml', {
   afterFindOne: function(post) {
     if (post) {
       post.content = marked(post.content);
+    }
+    return post;
+  }
+});
+
+Post.plugin('contentToHtmlProfile', {
+  afterFind: function(posts) {
+    return posts.map(function(post) {
+      post.content = marked(post.content.substr(0, PROFILE_COUNT));
+      return post;
+    });
+  },
+  afterFindOne: function(post) {
+    if (post) {
+      post.content = marked(post.content.substr(0, PROFILE_COUNT));
     }
     return post;
   }
@@ -37,6 +53,18 @@ module.exports = {
       .sort({ _id: -1 })
       .addCreateAt()
       .contentToHtml()
+      .exec();
+  },
+  getPostsProfile: function(author) {
+    var query = {};
+    if (author) {
+      query.author = author;
+    }
+    return Post.find(query)
+      .populate({ path: 'author', model: 'User' })
+      .sort({ _id: -1 })
+      .addCreateAt()
+      .contentToHtmlProfile()
       .exec();
   },
   incPv: function(postId) {

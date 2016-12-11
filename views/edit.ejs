@@ -18,11 +18,16 @@
       </div>
       <div class="field required">
         <label>内容</label>
-        <textarea name="content" rows="15"><%= post.content %></textarea>
+        <div id="previewText" style="background-color:#dededf; overflow:auto; word-break:break-all; height:300px; border-radius:5px;  margin-bottom:10px; padding:10px; display:none;"></div>
+        <textarea id="srcText" name="content" rows="15"><%= post.content %></textarea>
       </div>
-      <input type="submit" class="ui button" value="发布">
+      <div>
+        <input type="submit" class="ui button" value="发布">
+        <a id="previewBtn" href="">预览</a>
+      </div>
     </div>
   </form>
 </div>
-
+<script src="/javascripts/marked.min.js"></script>
+<script src="/javascripts/preview.js"></script>
 <%- include('footer') %>
