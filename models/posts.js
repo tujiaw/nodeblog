@@ -1,6 +1,12 @@
 var Post = require('../lib/mongo').Post;
 var marked = require('marked');
 
+marked.setOptions({
+  highlight: function(code) {
+    return require("highlight.js").highlightAuto(code).value;
+  }
+});
+
 const PROFILE_COUNT = 150;
 Post.plugin('contentToHtml', {
   afterFind: function(posts) {
