@@ -8,7 +8,6 @@
         <img class="avatar" src="/images/<%= post.author.avatar %>">
       </a>
     </div>
-
     <div class="ten wide column">
       <div class="ui segment">
         <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
@@ -25,7 +24,7 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                   <div class="item"><a href="/posts/<%= post._id %>/edit">编辑</a></div>
-                  <div class="item"><a href="/posts/<%= post._id %>/remove">删除</a></div>
+                  <div class="item"><a class="remove" href="/posts/<%= post._id %>/remove">删除</a></div>
                 </div>
               </div>
             <% } %>
