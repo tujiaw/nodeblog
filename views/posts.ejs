@@ -1,6 +1,6 @@
-<%- include('header') %>
+<%- include('segment/header') %>
 <% posts.forEach(function(post) { %>
-  <%- include('post-content', { post: post }) %>
+  <%- include('segment/post-content', { post: post }) %>
 <% }) %>
-<%- include('delete-post-modal') %>
-<%- include('footer') %>
+<%- include('segment/delete-post-modal') %>
+<%- include('segment/footer') %>
