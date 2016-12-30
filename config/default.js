@@ -1,4 +1,6 @@
 module.exports = {
+  title: 'tujiaw',
+  desc: 'Keep It Simple, Stupid',
   port: 3000,
   session: {
     secret: 'nodeblog',

@@ -1,0 +1,30 @@
+<div class="ui small test modal">
+  <i class="close icon"></i>
+  <div class="header">删除文章</div>
+  <div class="content">
+    <p>文章删除了就不可恢复，您确定要删除这篇文章？</p>
+  </div>
+  <div class="actions">
+    <div class="ui negative button">不</div>
+    <div class="ui positive right labeled icon button">
+      是的
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('a.remove').click(function() {
+    var href = $(this).attr('href');
+    $('.small.test.modal').modal({
+      closable: false,
+      onDeny: function() {
+        return true;
+      },
+      onApprove: function() {
+        window.location.href = href;
+      }
+    }).modal('show');
+    return false;
+  })
+</script>

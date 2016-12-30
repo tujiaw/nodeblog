@@ -9,7 +9,6 @@ var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var config = require('config-lite');
 var routes = require('./routes');
-var pkg = require('./package');
 var winston = require('winston');
 var expressWinston = require('express-winston');
 
@@ -21,7 +20,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+// app.use(logger('dev'));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cookieParser());
@@ -46,8 +45,8 @@ app.use(require('express-formidable')({
 }));
 
 app.locals.blog = {
-  title: pkg.name,
-  description: pkg.description,
+  title: config.title,
+  description: config.desc,
 };
 
 app.use(function(req, res, next) {
@@ -69,8 +68,8 @@ app.use(function(req, res, next) {
 //     })
 //   ]
 // }));
+
 routes(app);
-console.log('11111111111111111111111111111111111111');
 
 // error handlers
 // 错误请求的日志
