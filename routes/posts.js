@@ -55,6 +55,7 @@ router.get('/create', checkLogin, function(req, res, next) {
 
 // GET /posts/:postId 单独一篇的文章页
 router.get('/:postId', function(req, res, next) {
+  console.log(req.host + req.originalUrl);
   var postId = req.params.postId;
   Promise.all([
     PostModel.getPostById(postId),
@@ -67,7 +68,8 @@ router.get('/:postId', function(req, res, next) {
     }
 
     res.render('post', {
-      post: post
+      post: post,
+      postUrl: req.host + req.originalUrl,
     });
   })
   .catch(next);
