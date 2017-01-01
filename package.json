@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "node ./bin/www",
-    "start": "NODE_ENV=production pm2 start app.js --node-args='--harmony' --name 'nodeblog'"
+    "start": "NODE_ENV=production pm2 start ./bin/www --node-args='--harmony' --name 'nodeblog'"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
