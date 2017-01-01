@@ -7,8 +7,8 @@ module.exports = {
     key: 'nodeblog',
     maxAge: 2592000000,
   },
-  // mongodb: 'mongodb\://localhost:27017/nodeblog' // :一定要转义
-  mongodb:'mongodb\://tujiaw:123456@ds133428.mlab.com:33428/tujiawblog'
+  mongodb: 'mongodb\://localhost:27017/nodeblog' // :一定要转义
+  // mongodb:'mongodb\://tujiaw:123456@ds133428.mlab.com:33428/tujiawblog'
 };
 
 // 1.安装mondb
