@@ -1,0 +1,43 @@
+<div class="ui fixed inverted main menu">
+  <div class="ui container">
+    <a class="launch icon item no-hover-bottom">
+      <i class="content icon"></i>
+    </a>
+    <a class="home icon item no-hover-bottom" href="/posts">
+      <i class="home icon"></i>
+    </a>
+    <!--
+    <div class="right menu">
+      <div class="vertically fitted borderless item">
+        <iframe class="github" src="http://ghbtns.com/github-btn.html?user=tujiaw&amp;repo=nodeblog&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+      </div>
+    </div>
+    -->
+  </div>
+</div>
+
+<div class="ui left vertical inverted icon sidebar menu">
+<div class="item">
+  <iframe class="github" src="http://ghbtns.com/github-btn.html?user=tujiaw&amp;repo=nodeblog&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="20"></iframe>
+</div>
+<div class="item">
+  <div class="header">权限</div>
+  <div class="menu">
+    <% if (user) { %>
+      <a class="item no-hover-bottom" href="/posts?author=<%= user._id %>">个人主页</a>
+      <a class="item no-hover-bottom" href="/posts/create">发表文章</a>
+      <a class="item no-hover-bottom" href="/signout">登出</a>
+    <% } else { %>
+      <a class="item no-hover-bottom" href="/signin">登录</a>
+      <a class="item no-hover-bottom" href="/signup">注册</a>
+    <% } %>
+  </div>
+</div>
+<div class="item">
+  <div class="header">链接</div>
+  <div class="menu">
+    <a class="item no-hover-bottom" href="/wchathot.html" target="_blank">微信文章精选</a>
+    <a class="item no-hover-bottom" href="http://blog.csdn.net/tujiaw" target="_blank">CSDN Blog</a>
+  </div>
+</div>
+</div>

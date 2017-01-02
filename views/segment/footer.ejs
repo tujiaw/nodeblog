@@ -1,6 +1,9 @@
 
     <script type="text/javascript">
       $('.ui.dropdown').dropdown();
+      $('.launch.item').click(function() {
+        $('.left.sidebar').sidebar('toggle');
+      });
       $('.post-content .avatar').popup({
         inline: true,
         position: 'bottom right',
