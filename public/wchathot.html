@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tujiaw Github</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/wchathot.css">
+  <script src="https://cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="/javascripts/thirdparty/ejs.min.js"></script>
+  <script src="/javascripts/thirdparty/md5.min.js"></script>
+  <script src="/javascripts/showapi.js"></script>
+  <script src="/javascripts/wchathot.js"></script>
+
+  <script id="mainContent" type="text/template">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div id="main" class="col-md-6">
+      <h4 id="title" class="alert-success text-center">微信热门精选</h4>
+
+      <div class="typePanel">
+        <ul>
+          <% typeList.forEach(function(type) { %>
+            <li class="typeItem">
+              <a typeId="<%= type.id %>" href="javascript:void(0)" onclick="typeItemClicked(this)"><%= type.name %></a>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+
+      <div class="articlePanel">
+        <% if (typeof(pagebean) != 'undefined' && pagebean && pagebean.contentlist.length > 0) { %>
+          <%
+            var curTypeId = parseInt(pagebean.contentlist[0].typeId);
+            var curPage = parseInt(pagebean.currentPage);
+            var typeName = pagebean.contentlist[0].typeName;
+          %>
+
+          <div id="articleHeader">
+            <span id="currentType" onclick="currentTypeClicked(this)">
+              &nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right" style="display:none"></span><%= typeName %>
+            </span>
+            <div class="pageButton">
+              <% if (curPage <= 1) { %>
+                <a href="#" class="disabled text-muted" onclick="return false;">上一页</a>
+              <% } else { %>
+                <a href="javascript:void(0)" class="prePage" onclick="prePageClicked(this)">上一页</a>
+              <% } %>
+              <a href="javascript:void(0)" class="nextPage" onclick="nextPageClicked(this)">下一页</a>
+            </div>
+          </div>
+
+          <div class="articleList">
+            <% pagebean.contentlist.forEach(function(article) { %>
+                <div class="articleItem" url="<%= article.url %>" onclick="articleItemClicked(this)">
+                  <img class="img-rounded" src="<%= article.contentImg %>" >
+                  <div id="content">
+                    <div id="userName">
+                      <%= article.userName %>
+                    </div>
+                    <div id="title">
+                      <%= article.title %>
+                    </div>
+                  </div>
+                  <div class="clearBoth"></div>
+                </div>
+            <% }); %>
+          </div>
+        <% } %>
+      </div>
+
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    </div>
+  </script>
+</head>
+<body>
+<div id="main"></div>
+<script type="text/javascript">
+  $(function() {
+    getWchatHot();
+  })
+</script>
+</body>
+</html>
