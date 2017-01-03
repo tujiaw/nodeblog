@@ -6,16 +6,14 @@ body {
   margin: 0 auto;
 }
 
-.pusher {
-  display: flex;
+.main {
   min-height: 100%;
-  flex-direction: column;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
-
-.pusher > .footerpadding {
-  flex: 1;
+.footer {
+  position: absolute;
 }
-
 /* ------防止点击slidebar的时候文章列表发生偏移---- */
 .ui.fixed.menu+.ui.grid {
   padding-top: 0px;
