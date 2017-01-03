@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <html>
   <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title><%= blog.title %></title>
   <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
@@ -10,6 +13,7 @@
   <script src="/javascripts/util.js"></script>
   </head>
   <body>
+    <div class="pusher">
     <%- include('sidebar') %>
     <%- include('nav') %>
     <%- include('notification') %>

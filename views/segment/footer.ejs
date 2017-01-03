@@ -1,17 +1,19 @@
-<!--
-    <div class="ui black inverted vertical footer segment">
-      <div class="ui center aligned container">
-        <div class="ui horizontal inverted small divided link list">
-          <a class="item no-border-bottom" href="http://semantic-ui.mit-license.org/" target="_blank">Free &amp; Open Source (MIT)</a>
-        </div>
-      </div>
+
+  <div class="ui footerpadding"></div>
+  <div class="ui black inverted vertical footer segment">
+    <div class="ui center aligned container">
+      Travel Match 2016. All Rights Reserved
     </div>
--->
+  </div>
+</div>
     <script type="text/javascript">
+      /* 菜单 */
       $('.ui.dropdown').dropdown();
+      /* 侧边栏 */
       $('.launch.item').click(function() {
-        $('.left.sidebar').sidebar('toggle');
+        $('.left.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
       });
+      /* 头像 */
       $('.post-content .avatar').popup({
         inline: true,
         position: 'bottom right',

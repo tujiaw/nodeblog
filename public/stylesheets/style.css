@@ -1,13 +1,19 @@
 /* ---------- 全局样式 ---------- */
 
-html {
-  height: 100%;
-}
 body {
   width: 100%;
   height: 100%;
   margin: 0 auto;
+}
+
+.pusher {
+  display: flex;
   min-height: 100%;
+  flex-direction: column;
+}
+
+.pusher > .footerpadding {
+  flex: 1;
 }
 
 /* ------防止点击slidebar的时候文章列表发生偏移---- */
@@ -76,5 +82,3 @@ a.no-hover-bottom:hover {
 .post-content .tag.right a {
   color: #999;
 }
-
-/* ---------- footer ---------- */
