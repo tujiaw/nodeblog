@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title><%= blog.title %></title>
+  <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/github.css">
+  <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.js"></script>
+  <script src="/javascripts/util.js"></script>
+  </head>
+  <body>
+    <div class="ui sidebar inverted vertical menu">
+      <a class="item">
+        1
+      </a>
+      <a class="item">
+        2
+      </a>
+      <a class="item">
+        3
+      </a>
+    </div>
+    <div class="">
+      <!-- Site content !-->
+      <div class="ui center aligned container">
+        <p>1111111111111111</p>
+        <button class="ui button">overlay</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $('.ui.button').click(function() {
+        $('.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
+      })
+    </script>
+  </body>
+</html>
