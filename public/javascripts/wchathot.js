@@ -37,11 +37,12 @@ function getWchatHot(typeId, page) {
                 return left.id - right.id;
             });
             // 反盗链 https://www.zhihu.com/question/35044484
-            // var qqUrl = 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=';
-            // for (var i = 0; i < pagebean.contentlist.length; i++) {
-            //   var contentImg = pagebean.contentlist[i].contentImg;
-            //   pagebean.contentlist[i].contentImg = qqUrl + contentImg;
-            // }
+            var qqUrl = 'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl=';
+            for (var i = 0; i < pagebean.contentlist.length; i++) {
+              var contentImg = pagebean.contentlist[i].contentImg;
+              pagebean.contentlist[i].contentImg = qqUrl + contentImg;
+            }
+
             html = ejs.render($('#mainContent').html(), {typeList: typeList, pagebean: pagebean});
           } else {
             html = "content is empty!";
