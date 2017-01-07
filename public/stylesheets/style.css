@@ -8,7 +8,6 @@ body {
 .pusher {
   min-height: 100%;
   box-sizing: border-box;
-  padding-bottom: 20px;
 }
 
 /* ------防止点击slidebar的时候文章列表发生偏移---- */
@@ -76,4 +75,9 @@ a.no-hover-bottom:hover {
 
 .post-content .tag.right a {
   color: #999;
+}
+
+.pagebuttons {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

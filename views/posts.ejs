@@ -2,5 +2,35 @@
 <% posts.forEach(function(post) { %>
   <%- include('segment/post-content', { post: post }) %>
 <% }) %>
+<div class="pagebuttons">
+  <div class="ui center aligned container">
+      <div class="ui small pagination menu">
+        <a class="icon item no-hover-bottom">
+          <i class="angle double left icon"></i>
+        </a>
+        <a class="active item no-hover-bottom">
+          1
+        </a>
+        <a class="item no-hover-bottom">
+          2
+        </a>
+        <a class="item no-hover-bottom">
+          3
+        </a>
+        <a class="item no-hover-bottom">
+          4
+        </a>
+        <a class="item no-hover-bottom">
+          5
+        </a>
+        <div class="disabled item no-hover-bottom">
+          ...
+        </div>
+        <a class="icon item no-hover-bottom">
+          <i class="angle double right icon"></i>
+        </a>
+      </div>
+  </div>
+</div>
 <%- include('segment/delete-post-modal') %>
 <%- include('segment/footer') %>
