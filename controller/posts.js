@@ -35,7 +35,7 @@ module.exports = {
         var pagePosts = results[0];
         var totalCount = results[1];
         MongoHelp.addAllCreateAt(pagePosts);
-        MongoHelp.postsContent2html(pagePosts);
+        MongoHelp.postsContent2html(pagePosts, true);
 
         var pageNumbers = [];
         var lastPage = Math.ceil(totalCount / PAGE_COUNT);
