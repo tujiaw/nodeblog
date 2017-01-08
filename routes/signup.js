@@ -3,7 +3,7 @@ var sha1 = require('sha1');
 var express = require('express');
 var router = express.Router();
 
-var UserModel = require('../models/users');
+var Users = require('../controller/users');
 var checkNotLogin = require('../middle/check').checkNotLogin;
 
 // GET /signup 注册页
@@ -13,19 +13,12 @@ router.get('/', checkNotLogin, function(req, res, next) {
 
 // POST /signup 用户注册
 router.post('/', checkNotLogin, function(req, res, next) {
-  console.log('signup post/');
   var name = req.fields.name;
   var gender = req.fields.gender;
   var bio = req.fields.bio;
   var avatar = req.files.avatar.path.split(path.sep).pop();
   var password = req.fields.password;
   var repassword = req.fields.repassword;
-  console.log('name:' + name);
-  console.log('gender:' + gender);
-  console.log('bio:' + bio);
-  console.log('avatar:' + avatar);
-  console.log('password:' + password);
-  console.log('repassword:' + repassword);
 
   try {
     if (!(name.length >= 1 && name.length <= 20)) {
@@ -60,20 +53,20 @@ router.post('/', checkNotLogin, function(req, res, next) {
     avatar: avatar
   };
 
-  UserModel.create(user).then(function(result) {
-    console.log('aaaaaaaaaaaaaaaa');
-    user = result.ops[0];
-    delete user.password;
-    req.session.user = user;
-    req.flash('success', '注册成功');
-    res.redirect('/posts');
-  }).catch(function(error) {
-    console.log('bbbbbbbbbbbbbb:' + error.message);
-    if (error.message.match('E11000 duplicate key')) {
-      req.flash('error', '用户名已被占用');
-      return res.redirect('/signup');
+  Users.create(user, function(error, result) {
+    if (error) {
+      if (error.message.match('E11000 duplicate key')) {
+        req.flash('error', '用户名已被占用');
+        return res.redirect('/signup');
+      }
+      next(error);
+    } else {
+      user = result._doc;
+      delete user.password;
+      req.session.user = user;
+      req.flash('success', '注册成功');
+      res.redirect('/posts');
     }
-    next(error);
   });
 });
 

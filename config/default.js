@@ -2,6 +2,7 @@ module.exports = {
   title: 'tujiaw',
   desc: 'Keep It Simple, Stupid',
   port: 3000,
+  pageCount: 20,
   session: {
     secret: 'nodeblog',
     key: 'nodeblog',

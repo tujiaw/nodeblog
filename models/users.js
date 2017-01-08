@@ -1,14 +1,15 @@
-var User = require('../lib/mongo').User;
+var mongoose = require('./mongo').mongoose;
 
-module.exports = {
-  create: function(user) {
-    return User.create(user).exec();
-  },
+var UsersSchema = new mongoose.Schema({
+  name: { type: String },
+  password: { type: String },
+  avatar: {type: String },
+  gender: { type: String, enum:['m', 'f', 'x'] },
+  bio: { type: String }
+});
 
-  getUserByName: function(name) {
-    return User
-      .findOne({name: name})
-      .addCreateAt()
-      .exec();
-  }
+UsersSchema.statics.getUserByName = function(name) {
+  return this.findOne({name: name}).exec();
 };
+
+module.exports = mongoose.model('Users', UsersSchema);

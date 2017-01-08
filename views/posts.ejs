@@ -3,34 +3,50 @@
   <%- include('segment/post-content', { post: post }) %>
 <% }) %>
 <div class="pagebuttons">
-  <div class="ui center aligned container">
-      <div class="ui small pagination menu">
-        <a class="icon item no-hover-bottom">
-          <i class="angle double left icon"></i>
-        </a>
-        <a class="active item no-hover-bottom">
-          1
-        </a>
-        <a class="item no-hover-bottom">
-          2
-        </a>
-        <a class="item no-hover-bottom">
-          3
-        </a>
-        <a class="item no-hover-bottom">
-          4
-        </a>
-        <a class="item no-hover-bottom">
-          5
-        </a>
-        <div class="disabled item no-hover-bottom">
-          ...
-        </div>
-        <a class="icon item no-hover-bottom">
-          <i class="angle double right icon"></i>
-        </a>
+    <% if (pageNumbers.length > 1) { %>
+      <div class="ui center aligned container">
+          <div class="ui small pagination menu">
+
+              <a class="icon item no-hover-bottom" value="1">
+                <i class="angle double left icon"></i>
+              </a>
+                <% pageNumbers.forEach(function(number) { %>
+                <% if (number === 0) { %>
+                  <div class="disabled item no-hover-bottom">...</div>
+                    <% } else if (number === page) { %>
+                  <a class="active item no-hover-bottom"><%= number %></a>
+                    <% } else { %>
+                  <a class="item no-hover-bottom"><%= number %></a>
+                    <% } %>
+                <% }) %>
+              <a class="icon item no-hover-bottom" value=<%= lastPage %>>
+                <i class="angle double right icon"></i>
+              </a>
+          </div>
       </div>
-  </div>
+    <% } %>
 </div>
+<script type="text/javascript">
+  function hasParameter(name){
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]);
+    return null;
+  }
+
+  $('.pagination.menu a').click(function() {
+    var newPage = parseInt($(this).text());
+    var firstLast = parseInt($(this).attr('value'));
+    if (isNaN(newPage) && !isNaN(firstLast)) {
+      newPage = firstLast;
+    }
+    var author = hasParameter('author');
+    if (author) {
+      window.location.href = `/posts?author=${author}&page=${newPage}`;
+    } else {
+      window.location.href = `/posts?page=${newPage}`;
+    }
+  })
+</script>
 <%- include('segment/delete-post-modal') %>
 <%- include('segment/footer') %>

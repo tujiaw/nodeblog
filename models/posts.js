@@ -1,90 +1,65 @@
-var Post = require('../lib/mongo').Post;
 var marked = require('marked');
+var mongoose = require('./mongo').mongoose;
+var config = require('config-lite');
+var PAGE_COUNT = config.pageCount;
 
-marked.setOptions({
-  highlight: function(code) {
-    return require("highlight.js").highlightAuto(code).value;
-  }
+var PostSchema = new mongoose.Schema({
+  author: { type: mongoose.Schema.Types.ObjectId },
+  title: { type: String },
+  content: { type: String },
+  pv: { type: Number }
 });
 
-const PROFILE_COUNT = 150;
-Post.plugin('contentToHtml', {
-  afterFind: function(posts) {
-    return posts.map(function(post) {
-      post.content = marked(post.content);
-      return post;
-    });
-  },
-  afterFindOne: function(post) {
-    if (post) {
-      post.content = marked(post.content);
-    }
-    return post;
-  }
-});
+PostSchema.statics.getPostById = function(postId) {
+  return this.findOne({ _id: postId})
+    .populate({ path: 'author', model: 'Users'})
+    .exec();
+};
 
-Post.plugin('contentToHtmlProfile', {
-  afterFind: function(posts) {
-    return posts.map(function(post) {
-      post.content = marked(post.content.substr(0, PROFILE_COUNT));
-      return post;
-    });
-  },
-  afterFindOne: function(post) {
-    if (post) {
-      post.content = marked(post.content.substr(0, PROFILE_COUNT));
-    }
-    return post;
+PostSchema.statics.getPostsProfile = function(author, page) {
+  var query = {};
+  if (author) {
+    query.author = author;
   }
-});
-
-module.exports = {
-  create: function(post) {
-    return Post.create(post).exec();
-  },
-  getPostById: function(postId) {
-    return Post.findOne({ _id: postId})
-      .populate({ path: 'author', model: 'User' })
-      .addCreateAt()
-      .contentToHtml()
-      .exec();
-  },
-  getPosts: function(author) {
-    var query = {};
-    if (author) {
-      query.author = author;
-    }
-    return Post.find(query)
-      .populate({ path: 'author', model: 'User' })
+  if (page && page > 0) {
+    return this.find(query)
+      .populate({ path: 'author', model: 'Users'})
+      .skip(PAGE_COUNT * (page - 1))
+      .limit(PAGE_COUNT)
       .sort({ _id: -1 })
-      .addCreateAt()
-      .contentToHtml()
       .exec();
-  },
-  getPostsProfile: function(author) {
-    var query = {};
-    if (author) {
-      query.author = author;
-    }
-    return Post.find(query)
-      .populate({ path: 'author', model: 'User' })
+  } else {
+    return this.find(query)
+      .populate({ path: 'author', model: 'Users'})
       .sort({ _id: -1 })
-      .addCreateAt()
-      .contentToHtmlProfile()
       .exec();
-  },
-  incPv: function(postId) {
-    return Post.update({ _id: postId }, { $inc: {pv: 1} }).exec();
-  },
-  getRawPostById: function(postId) {
-    return Post.findOne({ _id: postId })
-      .populate({ path: 'author', model: 'User'})
-      .exec();
-  },
-  updatePostById: function(postId, author, content) {
-    return Post.update({ author: author, _id: postId}, { $set: content }).exec();
-  },
-  delPostById: function(postId, author) {
-    return Post.remove({ author: author, _id: postId }).exec();
   }
 };
+
+PostSchema.statics.getPostsCount = function(author) {
+  var query = {};
+  if (author) {
+    query.author = author;
+  }
+  return this.count(query).exec();
+};
+
+PostSchema.statics.incPv = function(postId) {
+  return this.update({ _id: postId }, { $inc: {pv: 1} }).exec();
+};
+
+PostSchema.statics.getRawPostById = function(postId) {
+  return this.findOne({ _id: postId })
+    .populate({ path: 'author', model: 'Users'})
+    .exec();
+};
+
+PostSchema.statics.updatePostById = function(postId, author, content) {
+  return this.update({ author: author, _id: postId}, { $set: content }).exec();
+};
+
+PostSchema.statics.delPostById = function(postId, author) {
+  return this.remove({ author: author, _id: postId }).exec();
+};
+
+module.exports = mongoose.model('Posts', PostSchema);

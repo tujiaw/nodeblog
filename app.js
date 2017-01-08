@@ -46,7 +46,7 @@ app.use(require('express-formidable')({
 
 app.locals.blog = {
   title: config.title,
-  description: config.desc,
+  description: config.desc
 };
 
 app.use(function(req, res, next) {
@@ -56,7 +56,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-// // 正常请求的日志
+// 正常请求的日志
 app.use(expressWinston.logger({
   transports: [
     new (winston.transports.Console)({
