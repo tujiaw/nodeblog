@@ -25,4 +25,4 @@
     updateContent();
     return false;
   });
-}(this))
+})(this);
