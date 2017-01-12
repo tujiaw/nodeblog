@@ -16,27 +16,24 @@
       $('.warning.message').css('display', '');
       $('.warning.message').html(msg);
     };
+
     if ($('#title').val().length == 0) {
       showMessage('请输入文章标题！');
-      return false;
-    }
-
-    if ($('#srcText').val().length == 0) {
+    } else if ($('#srcText').val().length == 0) {
       showMessage('请输入文章内容！');
-      return false;
-    }
-
-    var hasLabel = false;
-    $('.tag.label').each(function(key, value) {
-      if (!hasLabel && $(this).hasClass('active')) {
-        hasLabel = true;
+    } else {
+      var tags = [];
+      $('.tag.label').each(function(key) {
+        if ($(this).hasClass('active')) {
+          tags.push($(this).text());
+        }
+      });
+      if (tags.length > 0) {
+        $('#inputTag').val(tags.join(';'));
+        return true;
       }
-    });
-    if (!hasLabel) {
       showMessage('请选择文章标签！');
-      return false;
     }
-
-    return true;
+    return false;
   });
 })(this);

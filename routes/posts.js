@@ -28,6 +28,8 @@ router.post('/', checkLogin, function(req, res, next) {
   var author = req.session.user._id;
   var title = req.fields.title;
   var content = req.fields.content;
+  var tags = req.fields.tags.split(';');
+  console.log(tags);
 
   try {
     if (!title.length) {
@@ -46,6 +48,7 @@ router.post('/', checkLogin, function(req, res, next) {
     title: title,
     content: content,
     pv: 1,
+    tags: tags,
   };
 
   Posts.create(post, function(error, result) {
@@ -116,6 +119,8 @@ router.post('/:postId/edit', checkLogin, function(req, res, next) {
   var author = req.session.user._id;
   var title = req.fields.title;
   var content = req.fields.content;
+  var tags = req.fields.tags.split(';');
+  console.log('11111111111111:' + tags);
 
   try {
     if (title.length == 0) {
@@ -124,12 +129,15 @@ router.post('/:postId/edit', checkLogin, function(req, res, next) {
     if (content.length == 0) {
       throw new Error('内容不能为空');
     }
+    if (tags.length == 0) {
+      throw new Error('标签不能为空');
+    }
   } catch (e) {
     req.flash('error', e.message);
     return res.redirect('back');
   }
 
-  Posts.updatePostById(postId, author, { title: title, content: content }, function(error) {
+  Posts.updatePostById(postId, author, { title: title, content: content, tags: tags }, function(error) {
     if (error) {
       next(new Error(error));
     } else {

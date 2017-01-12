@@ -14,9 +14,17 @@
         <%- post.content %>
         <div>
           <span class="tag"><%= post.created_at %></span>
+          <i class="tags icon"></i>
+          <div class="ui breadcrumb">
+            <% for (var i = 0; i < post.tags.length; i++) { %>
+              <% if (post.tags[i].length > 0) { %>
+                <span class="ui mini label">
+                  <a class="no-hover-bottom" href="/tags/<%= post.tags[i] %>"><%= post.tags[i] %></a>
+                </span>
+            <% }} %>
+          </div>
           <span class="tag right">
             <span>浏览(<%= post.pv || 0 %>)</span>
-            <span>留言(<%= post.commentsCount || 0 %>)</span>
 
             <% if (user && post.author._id && user._id.toString() === post.author._id.toString()) { %>
               <div class="ui inline dropdown">

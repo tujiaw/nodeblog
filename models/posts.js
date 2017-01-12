@@ -7,7 +7,8 @@ var PostSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId },
   title: { type: String },
   content: { type: String },
-  pv: { type: Number }
+  pv: { type: Number },
+  tags: { type: [String] },
 });
 
 PostSchema.statics.getPostById = function(postId) {
@@ -55,7 +56,7 @@ PostSchema.statics.getRawPostById = function(postId) {
 };
 
 PostSchema.statics.updatePostById = function(postId, author, content) {
-  return this.update({ author: author, _id: postId}, { $set: content }).exec();
+  return this.update({ author: author, _id: postId }, { $set: content }).exec();
 };
 
 PostSchema.statics.delPostById = function(postId, author) {
