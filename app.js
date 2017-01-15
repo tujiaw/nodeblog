@@ -46,7 +46,8 @@ app.use(require('express-formidable')({
 
 app.locals.blog = {
   title: config.title,
-  description: config.desc
+  description: config.desc,
+  tags: config.tags
 };
 
 app.use(function(req, res, next) {

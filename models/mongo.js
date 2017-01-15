@@ -21,9 +21,14 @@ module.exports.mongoHelp = {
       result.created_at = moment(objectIdToTimestamp(result._id)).format('YYYY-MM-DD HH:mm');
     }
   },
-  addAllCreateAt: function(results) {
+  addAllCreateDateTime: function(results) {
     results.forEach(function(item) {
       item.created_at = moment(objectIdToTimestamp(item._id)).format('YYYY-MM-DD HH:mm');
+    })
+  },
+  addAllCreateDate: function(results) {
+    results.forEach(function(item) {
+      item.created_at = moment(objectIdToTimestamp(item._id)).format('YYYY-MM-DD');
     })
   },
   postsContent2html: function(posts, isProfile) {

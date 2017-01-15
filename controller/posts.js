@@ -34,7 +34,7 @@ module.exports = {
       if (results.length > 1) {
         var pagePosts = results[0];
         var totalCount = results[1];
-        MongoHelp.addAllCreateAt(pagePosts);
+        MongoHelp.addAllCreateDateTime(pagePosts);
         MongoHelp.postsContent2html(pagePosts, true);
 
         var pageNumbers = [];
@@ -69,6 +69,14 @@ module.exports = {
   },
   getRawPostById: function(postId, cb) {
     PostsModel.getRawPostById(postId).then(function(result) {
+      cb(0, result);
+    }).catch(function(error) {
+      cb(error);
+    });
+  },
+  getPostByTag: function(tag, cb) {
+    PostsModel.getPostByTag(tag).then(function(result) {
+      MongoHelp.addAllCreateDate(result);
       cb(0, result);
     }).catch(function(error) {
       cb(error);

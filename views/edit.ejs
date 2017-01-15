@@ -29,15 +29,9 @@
       </div>
       <div class="field required">
         <label class="required">标签</label>
-          <a class="ui teal tag label">Windows</a>
-          <a class="ui red tag label">Linux</a>
-          <a class="ui blue tag label">Mobile</a>
-          <a class="ui yellow tag label">C/C++</a>
-          <a class="ui green tag label">Qt</a>
-          <a class="ui purple tag label">Node.js</a>
-          <a class="ui black tag label">Web</a>
-          <a class="ui violet tag label">Tools</a>
-          <a class="ui orange tag label">Bug</a>
+          <% blog.tags.forEach(function(tag) { %>
+            <a class="ui green tag label"><%= tag %></a>
+          <% })%>
       </div>
       <div>
         <input type="submit" class="ui button" value="发布">

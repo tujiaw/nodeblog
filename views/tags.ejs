@@ -1,0 +1,21 @@
+<%- include('segment/header') %>
+<div class="ui left aligned container">
+    <div class="ui horizontal divider">标签 & 类别</div>
+    <div class="ui container">
+        <% blog.tags.forEach(function(tag) { %>
+            <button class="ui tag tiny green basic button"><%= tag %></button>
+        <% }) %>
+    </div>
+    <h2 class="ui dividing header"><%= tagName %></h2>
+    <div class="ui list">
+        <% postList.forEach(function(post) { %>
+            <div class="item">
+                <a href="/posts/<%= post._id %>"><%= post.title %></a>
+                <span><%= post.created_at%></span>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<script src="/javascripts/tags.js"></script>
+<%- include('segment/footer') %>

@@ -55,6 +55,12 @@ PostSchema.statics.getRawPostById = function(postId) {
     .exec();
 };
 
+PostSchema.statics.getPostByTag = function(tag) {
+  return this.find({tags: { $all: [tag] }})
+    .sort({ _id: -1 })
+    .exec();
+};
+
 PostSchema.statics.updatePostById = function(postId, author, content) {
   return this.update({ author: author, _id: postId }, { $set: content }).exec();
 };
