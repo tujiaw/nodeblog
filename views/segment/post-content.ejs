@@ -19,7 +19,7 @@
             <% for (var i = 0; i < post.tags.length; i++) { %>
               <% if (post.tags[i].length > 0) { %>
                 <span class="ui mini label">
-                  <a class="no-hover-bottom" href="/tags/<%= post.tags[i] %>"><%= post.tags[i] %></a>
+                  <a class="no-hover-bottom" href="/tags/<%= encodeURIComponent(post.tags[i]) %>"><%= post.tags[i] %></a>
                 </span>
             <% }} %>
           </div>

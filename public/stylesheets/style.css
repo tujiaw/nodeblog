@@ -8,7 +8,7 @@ body {
 .pusher {
   min-height: 100%;
   box-sizing: border-box;
-  padding-top: 50px;
+  padding-top: 60px;
 }
 
 /* ------防止点击slidebar的时候文章列表发生偏移---- */
