@@ -90,3 +90,11 @@ a.no-hover-bottom:hover {
 .ui.tag.label {
   margin-bottom: 5px;
 }
+
+/* 搜索栏 */
+.ui.search {
+  margin: 10px;
+}
+.ui.search>.input {
+  height: 30px;
+}
