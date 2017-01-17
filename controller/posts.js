@@ -82,6 +82,13 @@ module.exports = {
       cb(error);
     });
   },
+  searchPost: function(name, cb) {
+    PostsModel.searchPost(name).then(function(result) {
+      cb(0, result);
+    }).catch(function(error) {
+      cb(error);
+    })
+  },
   updatePostById: function(postId, author, content, cb) {
     PostsModel.updatePostById(postId, author, content).then(function() {
       cb(0);

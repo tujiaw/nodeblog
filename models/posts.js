@@ -61,6 +61,10 @@ PostSchema.statics.getPostByTag = function(tag) {
     .exec();
 };
 
+PostSchema.statics.searchPost = function(name) {
+  return this.find({title: new RegExp(name, 'i')}).exec()
+};
+
 PostSchema.statics.updatePostById = function(postId, author, content) {
   return this.update({ author: author, _id: postId }, { $set: content }).exec();
 };

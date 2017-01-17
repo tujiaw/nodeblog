@@ -10,6 +10,7 @@ module.exports = function(app) {
   app.use('/test', require('./test'));
   app.use('/about', require('./about'));
   app.use('/tags', require('./tags'));
+  app.use('/search', require('./search'));
 
   // 404 page
   app.use(function (req, res) {

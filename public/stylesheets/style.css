@@ -8,10 +8,10 @@ body {
 .pusher {
   min-height: 100%;
   box-sizing: border-box;
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
-/* ------防止点击slidebar的时候文章列表发生偏移---- */
+/* ------防止点击slidebar的时候文章列表发生偏移----   */
 .ui.fixed.menu+.ui.grid {
   padding-top: 0px;
 }
