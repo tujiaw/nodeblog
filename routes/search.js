@@ -15,19 +15,23 @@ router.get('/', function(req, res, next) {
       if (error) {
         next(new Error(error));
       } else {
-        console.log(posts);
-        var response = { items: [] };
+        var response = {
+          items: []
+        };
+
         posts.some(function(item, index) {
           var maxResults = 8;
           if (index > maxResults) {
             return false;
           }
-          response.items.push({
-            // language: item.tags.join(' '),
+
+          var a = {
             name: item.title,
-            description: item.tags.join(' '),
+            description: item.content.substr(0, 50),
             html_url: '/posts/' + item._id,
-          })
+          };
+
+          response.items.push(a);
         });
 
         res.json(response);
