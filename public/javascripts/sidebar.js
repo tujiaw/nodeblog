@@ -12,6 +12,6 @@ $('.ui.search')
       title   : 'name',
       url     : 'html_url'
     },
-    minCharacters : 3
+    minCharacters : 2
   })
 ;

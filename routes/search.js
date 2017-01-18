@@ -20,14 +20,14 @@ router.get('/', function(req, res, next) {
         };
 
         posts.some(function(item, index) {
-          var maxResults = 8;
+          var maxResults = 10;
           if (index > maxResults) {
             return false;
           }
 
           var a = {
             name: item.title,
-            description: item.content.substr(0, 50),
+            // description: item.tags.join(' '),
             html_url: '/posts/' + item._id,
           };
 
