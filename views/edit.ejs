@@ -30,7 +30,18 @@
       <div class="field required">
         <label class="required">标签</label>
           <% blog.tags.forEach(function(tag) { %>
-            <a class="ui green tag label"><%= tag %></a>
+            <% var isFind = false; %>
+            <% for (var i = 0; i < post.tags.length; i++) { %>
+            <%  if (post.tags[i] === tag) { %>
+            <%    isFind = true; %>
+            <%    break; %>
+            <%  } %>
+            <% } %>
+            <% if (isFind) { %>
+              <a class="ui green tag label active"><%= tag %></a>
+            <% } else { %>
+              <a class="ui green tag label"><%= tag %></a>
+            <% } %>
           <% })%>
       </div>
       <div>
