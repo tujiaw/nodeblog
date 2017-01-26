@@ -11,7 +11,9 @@
     <div class="eleven wide column">
       <div class="ui segment">
         <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
-        <%- post.content %>
+        <div class="markdown-body">
+            <%- post.content %>
+        </div>
         <div>
           <span class="tag"><%= post.created_at %></span>
           <i class="tags icon"></i>
