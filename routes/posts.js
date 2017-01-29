@@ -120,7 +120,6 @@ router.post('/:postId/edit', checkLogin, function(req, res, next) {
   var title = req.fields.title;
   var content = req.fields.content;
   var tags = req.fields.tags.split(';');
-  console.log('11111111111111:' + tags);
 
   try {
     if (title.length == 0) {
