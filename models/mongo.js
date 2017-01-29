@@ -46,7 +46,7 @@ module.exports.mongoHelp = {
   postsContent2Profile: function(posts) {
     return posts.map(function(post) {
       var profile = post.content.substr(0, PROFILE_COUNT);
-      profile = profile.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,"");
+      profile = profile.replace(/[\#|\`|\>]/g,"");
       post.content = profile;
       return post;
     });
