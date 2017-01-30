@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "node ./bin/www",
-    "start": "pm2 start ./bin/www --name 'nodeblog' --watch"
+    "start": "pm2 start ./bin/www --name 'nodeblog' --watch --ignore-watch='public' "
   },
   "dependencies": {
     "body-parser": "~1.15.1",
