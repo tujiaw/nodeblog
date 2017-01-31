@@ -31,26 +31,32 @@
   <div class="item">
     <a class=" no-hover-bottom" href="/">泊客小站</a>
   </div>
-<div class="item">
-  <div class="header">权限</div>
-  <div class="menu">
-    <% if (user) { %>
-      <a class="item no-hover-bottom" href="/posts?author=<%= user._id %>">个人主页</a>
-      <a class="item no-hover-bottom" href="/posts/create">发表文章</a>
-      <a class="item no-hover-bottom" href="/signout">登出</a>
-    <% } else { %>
-      <a class="item no-hover-bottom" href="/signin">登录</a>
-      <a class="item no-hover-bottom" href="/signup">注册</a>
-    <% } %>
+  <div class="item">
+    <div class="header">权限</div>
+    <div class="menu">
+      <% if (user) { %>
+        <a class="item no-hover-bottom" href="/posts?author=<%= user._id %>">个人主页</a>
+        <a class="item no-hover-bottom" href="/posts/create">发表文章</a>
+        <a class="item no-hover-bottom" href="/signout">登出</a>
+      <% } else { %>
+        <a class="item no-hover-bottom" href="/signin">登录</a>
+        <a class="item no-hover-bottom" href="/signup">注册</a>
+      <% } %>
+    </div>
   </div>
-</div>
-<div class="item">
-  <div class="header">链接</div>
-  <div class="menu">
-    <a class="item no-hover-bottom" href="/wchathot.html" target="_blank">微信文章精选</a>
-    <a class="item no-hover-bottom" href="http://blog.csdn.net/tujiaw" target="_blank">CSDN Blog</a>
-    <a class="item no-hover-bottom" href="https://github.com/tujiaw" target="_blank">GitHub</a>
+  <div class="item">
+    <div class="header">链接</div>
+    <div class="menu">
+      <a class="item no-hover-bottom" href="/wchathot.html" target="_blank">微信文章精选</a>
+      <a class="item no-hover-bottom" href="http://blog.csdn.net/tujiaw" target="_blank">CSDN Blog</a>
+      <a class="item no-hover-bottom" href="https://github.com/tujiaw" target="_blank">GitHub</a>
+    </div>
   </div>
-</div>
+  <div class="item">
+    <div class="header">工具</div>
+    <div class="menu">
+      <a class="item no-hover-bottom" href="http://123.57.244.170:3100/base64" target="_blank">base64编解码</a>
+    </div>
+  </div>
 </div>
 <script src="/javascripts/sidebar.js"></script>
