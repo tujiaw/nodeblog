@@ -11,6 +11,7 @@ module.exports = function(app) {
   app.use('/about', require('./about'));
   app.use('/tags', require('./tags'));
   app.use('/search', require('./search'));
+  app.use('/archives', require('./archives'));
 
   // 404 page
   app.use(function (req, res) {

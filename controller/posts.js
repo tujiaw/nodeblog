@@ -68,6 +68,20 @@ module.exports = {
       cb(error);
     });
   },
+  getPostTitle: function(cb) {
+    PostsModel.getPostsProfile().then(function(results) {
+      MongoHelp.addAllCreateDateTime(results);
+      var titles = results.map(function(item) {
+        return {
+          created_at: item.created_at,
+          title: item.title,
+        }
+      });
+      cb(0, titles);
+    }).catch(function(error) {
+      cb(error);
+    })
+  },
   getRawPostById: function(postId, cb) {
     PostsModel.getRawPostById(postId).then(function(result) {
       cb(0, result);
