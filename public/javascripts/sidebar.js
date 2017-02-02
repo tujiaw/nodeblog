@@ -33,6 +33,6 @@ var isMobile = {
   }
 };
 
-if (isMobile.Android() || isMobile.IOS()) {
-  $('.ui.search').hide();
+if (!(isMobile.Android() || isMobile.IOS())) {
+  $('.ui.search').show();
 }

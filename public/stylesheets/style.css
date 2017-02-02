@@ -94,6 +94,7 @@ a.no-hover-bottom:hover {
 /* 搜索栏 */
 .ui.search {
   margin: 10px;
+  display: none;
 }
 .ui.search>.input {
   height: 30px;
