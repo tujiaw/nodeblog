@@ -11,7 +11,7 @@
                     <% item.titles.forEach(function(title) { %>
                         <div class="item">
                             <%= title.created_at %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="item no-hover-bottom" href="/posts/<%= title._id %>"><%= title.title %></a>
+                            <a class="item" href="/posts/<%= title._id %>"><%= title.title %></a>
                         </div>
                     <% }) %>
                 </div>
