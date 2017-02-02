@@ -4,14 +4,14 @@
     <% archives.forEach(function(item) { %>
         <div class="row">
             <div class="four wide column right aligned">
-                <h2><%= item.yearMonth %></h2>
+                <h2 class="archives year_month"><%= item.yearMonth %></h2>
             </div>
             <div class="twelve wide column">
                 <div class="ui list">
                     <% item.titles.forEach(function(title) { %>
                         <div class="item">
-                            <%= title.created_at %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="item" href="/posts/<%= title._id %>"><%= title.title %></a>
+                            <span class="archives created_at"><%= title.created_at %></span>
+                            <a class="item archives" href="/posts/<%= title._id %>"><%= title.title %></a>
                         </div>
                     <% }) %>
                 </div>

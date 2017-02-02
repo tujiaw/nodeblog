@@ -98,3 +98,15 @@ a.no-hover-bottom:hover {
 .ui.search>.input {
   height: 30px;
 }
+
+/* ------ archives ------ */
+a.archives {
+  color: #4fc08d !important;
+}
+.archives.created_at {
+  color: #7f8c8d;
+  margin-right: 20px;
+}
+.archives.year_month {
+  color: #1d3e81;
+}
