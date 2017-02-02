@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     if (error) {
       next(new Error(error));
     } else {
-      res.render('archives');
+      res.render('archives', { archives: result });
     }
   });
 });

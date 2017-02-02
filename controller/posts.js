@@ -71,13 +71,37 @@ module.exports = {
   getPostTitle: function(cb) {
     PostsModel.getPostsProfile().then(function(results) {
       MongoHelp.addAllCreateDateTime(results);
-      var titles = results.map(function(item) {
-        return {
-          created_at: item.created_at,
-          title: item.title,
+      var archives = [];
+      results.forEach(function(item) {
+        var i = 0;
+        var isFind = false;
+        var yearMonth = item.created_at.substr(0, 7);
+        while (i < archives.length) {
+          if (archives[i].yearMonth === yearMonth) {
+            archives[i].titles.push({
+              _id: item._doc._id,
+              created_at: item.created_at,
+              title: item.title,
+            });
+            break;
+          }
+          i++;
+        }
+
+        if (i === archives.length) {
+          var archivesItem = {
+            yearMonth: yearMonth,
+            titles: [{
+              _id: item._doc._id,
+              created_at: item.created_at,
+              title: item.title,
+            }],
+          };
+          archives.push(archivesItem);
         }
       });
-      cb(0, titles);
+
+      cb(0, archives);
     }).catch(function(error) {
       cb(error);
     })
