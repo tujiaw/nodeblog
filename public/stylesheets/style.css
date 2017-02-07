@@ -25,7 +25,7 @@ body {
 }
 
 a:hover {
-  border-bottom: 3px solid #4fc08d;
+  border-bottom: 3px solid #34a853;
 }
 
 a.no-hover-bottom:hover {
@@ -33,7 +33,7 @@ a.no-hover-bottom:hover {
 }
 
 .button {
-  background-color: #4fc08d !important;
+  background-color: #34a853 !important;
   color: #fff !important;
 }
 
@@ -53,14 +53,14 @@ a.no-hover-bottom:hover {
 }
 
 .nav h1 {
-  color: #4fc08d;
+  color: #34a853;
   display: inline-block;
   margin: 10px 0;
 }
 
 /* ---------- post-content ---------- */
 .post-content h3 a {
-  color: #4fc08d !important;
+  color: #34a853 !important;
 }
 
 .post-content .tag {
@@ -102,7 +102,7 @@ a.no-hover-bottom:hover {
 
 /* ------ archives ------ */
 a.archives {
-  color: #4fc08d !important;
+  color: #34a853 !important;
 }
 .archives.created_at {
   color: #7f8c8d;
