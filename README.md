@@ -8,5 +8,6 @@
 模板引擎：ejs
 
 # webhook热更新 
+playload url:http://123.57.244.170:3333/nodeblog
 
 [访问网站](http://123.57.244.170:3000)
