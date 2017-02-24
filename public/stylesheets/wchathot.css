@@ -18,15 +18,15 @@ body {
 }
 
 .typePanel {
-  background: #eeeeee;
   float: left;
   padding-top: 10px;
   padding-bottom: 10px;
   height: 527px;
+  background: #eeeeee;
 }
 
 .typeItem {
-  margin-top: 8px;
+  margin-top: 5px;
   width: 80px;
 }
 
