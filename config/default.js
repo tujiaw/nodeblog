@@ -8,7 +8,8 @@ module.exports = {
     key: 'nodeblog',
     maxAge: 2592000000,
   },
-  tags: ['Windows', 'Linux', 'Mobile', 'C/C++', 'Qt', 'Node.js', 'Web', 'Tools', 'Bug', 'Life', 'Tips', 'Design'],
+  tags: ['Windows', 'Linux', 'Mobile', 'C/C++', 'Qt', 'Node.js', 
+        'Web', 'Tools', 'Bug', 'Life', 'Tips', 'Design', 'Accountant'],
   mongodb: 'mongodb\://localhost:27017/nodeblog' // :一定要转义
   // mongodb:'mongodb\://tujiaw:123456@ds133428.mlab.com:33428/tujiawblog'
 };
