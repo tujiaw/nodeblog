@@ -59,6 +59,10 @@ a.no-hover-bottom:hover {
 }
 
 /* ---------- post-content ---------- */
+.post-content-footer {
+  margin-top: 20px;
+}
+
 .post-content h3 a {
   color: #34a853 !important;
 }
