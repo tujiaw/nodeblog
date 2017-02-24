@@ -32,6 +32,13 @@ a.no-hover-bottom:hover {
   border-bottom: 0px;
 }
 
+a.a-no-style {
+  color: #fff;
+}
+a.a-no-style:hover {
+  border-bottom: 0px;
+}
+
 .button {
   background-color: #34a853 !important;
   color: #fff !important;
