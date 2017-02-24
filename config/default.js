@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'tujiaw',
+  title: '三家店 - 泊客网',
   desc: 'Keep It Simple, Stupid',
   port: 3000,
   pageCount: 20,
