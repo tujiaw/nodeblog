@@ -7,7 +7,7 @@
   <meta name="referrer" content="never"> <!-- 反盗链 -->
   <title>泊客网 - 文章精选</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/stylesheets/wchathot.css">
+  <link rel="stylesheet" href="/stylesheets/wchathot-flex.css">
   <script src="https://cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="/javascripts/thirdparty/ejs.min.js"></script>
@@ -16,14 +16,10 @@
   <script src="/javascripts/wchathot.js"></script>
 
   <script id="mainContent" type="text/template">
-    <div class="container">
+    <h4 id="mainTitle" class="alert-success text-center">微信热门精选</h4>
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-      <h4 id="mainTitle" class="alert-success text-center">微信热门精选</h4>
-
       <div class="typePanel">
-        <ul>
+        <ul class="typeList">
           <% typeList.forEach(function(type) { %>
             <li class="typeItem">
               <a typeId="<%= type.id %>" href="javascript:void(0)" onclick="typeItemClicked(this)"><%= type.name %></a>
@@ -40,7 +36,7 @@
             var typeName = pagebean.contentlist[0].typeName;
           %>
 
-          <div id="articleHeader">
+          <div class="articleHeader">
             <span id="currentType" onclick="currentTypeClicked(this)">
               &nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right" style="display:none"></span><%= typeName %>
             </span>
@@ -72,10 +68,6 @@
           </div>
         <% } %>
       </div>
-
-      </div>
-      <div class="col-md-3"></div>
-    </div>
     </div>
   </script>
 </head>
