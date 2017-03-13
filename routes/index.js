@@ -7,11 +7,11 @@ module.exports = function(app) {
   app.use('/signin', require('./signin'));
   app.use('/signout', require('./signout'));
   app.use('/posts', require('./posts'));
-  app.use('/test', require('./test'));
   app.use('/about', require('./about'));
   app.use('/tags', require('./tags'));
   app.use('/search', require('./search'));
   app.use('/archives', require('./archives'));
+  app.use('/uptoken', require('./uptoken'));
 
   // 404 page
   app.use(function (req, res) {

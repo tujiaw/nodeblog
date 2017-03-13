@@ -10,8 +10,13 @@ module.exports = {
   },
   tags: ['Windows', 'Linux', 'Mobile', 'C/C++', 'Qt', 'Node.js', 
         'Web', 'Tools', 'Bug', 'Life', 'Tips', 'Design', 'Accountant'],
-  mongodb: 'mongodb\://localhost:27017/nodeblog' // :一定要转义
+  mongodb: 'mongodb\://localhost:27017/nodeblog', // :一定要转义
   // mongodb:'mongodb\://tujiaw:123456@ds133428.mlab.com:33428/tujiawblog'
+  qiniu: {
+    bucket: 'myimages',
+    ak: 'C1NMwcgz9IAjZVnpYF5LvuCJ6HV5MyJek68QhPfz',
+    sk: 'PcWuJ18qByV-hjo-EzSiND3WtdLB94-wRQUwMwCQ',
+  }
 };
 
 // 1.安装mondb
