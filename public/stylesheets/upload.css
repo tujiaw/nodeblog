@@ -11,12 +11,12 @@ td code:hover {
     flex-direction: row;
     flex: 1;
     justify-content: center;
-    background: rgb(245, 245, 245);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    background: rgb(238, 238, 238);
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .footer>a {
     text-decoration: none;
-    color: rgb(30, 30, 30);
+    color: #666;
 }
