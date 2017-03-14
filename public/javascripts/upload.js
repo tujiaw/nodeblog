@@ -1,13 +1,78 @@
 'use strict'
 
-function addedFile(name, link, size) {
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": false,
+  "positionClass": "toast-bottom-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+// Copies a string to the clipboard. Must be called from within an 
+// event handler such as click. May return false if it failed, but
+// this is not always possible. Browser support for Chrome 43+, 
+// Firefox 42+, Safari 10+, Edge and IE 10+.
+// IE: The clipboard feature may be disabled by an administrator. By
+// default a prompt is shown the first time the clipboard is 
+// used (per session).
+function copyToClipboard(text) {
+    if (window.clipboardData && window.clipboardData.setData) {
+        // IE specific code path to prevent textarea being shown while dialog is visible.
+        return clipboardData.setData("Text", text); 
+
+    } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+        var textarea = document.createElement("textarea");
+        textarea.textContent = text;
+        textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+        } catch (ex) {
+            console.warn("Copy to clipboard failed.", ex);
+            return false;
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    }
+}
+
+function onLinkClick(self) {
+    var url = $(self).find('code').html();
+    if (url.indexOf('http:') < 0) {
+        return;
+    }
+    if (copyToClipboard(url)) {
+        toastr.success('复制成功')
+    }
+}
+
+function FilesAdded(id, name, size) {
+    $('.uploadTable').show();
+    var kbSize = 1;
+    if (size > 1000) {
+        kbSize = Math.ceil(size / 1000);
+    }
+    $('.uploadTable tbody').append(`<tr id="${id}"><td>${name}</td><td>${kbSize} KB</td><td class="link" onclick="onLinkClick(this)"><code>上传中...</code></td></tr>`)
+}
+
+function FileUploaded(id, link) {
     var targetName = link;
     if (link.indexOf('http:') < 0) {
         targetName = 'http://' + link;
     }
     var targetUrl = 'http://' + link;
-    var item = `<li><span class="glyphicon glyphicon-file"></span>${name} (${size}字节) </span><a href="${targetName}" target='_black'><span class="glyphicon glyphicon-link">${link}</a></li>`;
-    $('#addedFiles>ul').append(item);
+    $(`#${id} code`).html(targetUrl);
 } 
 
 var uploader = Qiniu.uploader({
@@ -41,6 +106,7 @@ var uploader = Qiniu.uploader({
             plupload.each(files, function(file) {
                 // 文件添加进队列后，处理相关的事情
                 console.log('FilesAdded:' + file);
+                FilesAdded(file.id, file.name, file.size);
             });
         },
         'BeforeUpload': function(up, file) {
@@ -63,7 +129,7 @@ var uploader = Qiniu.uploader({
             var res = JSON.parse(info);
             var sourceLink = domain +"/"+ res.key; // 获取上传成功后的文件的Url
             console.log(sourceLink);
-            addedFile(file.name, sourceLink, file.size);
+            FileUploaded(file.id, sourceLink);
         },
         'Error': function(up, err, errTip) {
             //上传出错时，处理相关的事情
