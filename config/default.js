@@ -1,7 +1,7 @@
 module.exports = {
   title: '三家店 - 泊客网',
   desc: 'Keep It Simple, Stupid',
-  port: 3000,
+  port: 3100,
   pageCount: 20,
   session: {
     secret: 'nodeblog',
