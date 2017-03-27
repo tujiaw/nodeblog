@@ -24,6 +24,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   name: config.session.key,
@@ -72,7 +73,6 @@ app.use(function(req, res, next) {
 
 routes(app);
 
-// error handlers
 // 错误请求的日志
 app.use(expressWinston.errorLogger({
   transports: [
